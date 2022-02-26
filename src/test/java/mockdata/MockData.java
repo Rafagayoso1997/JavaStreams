@@ -1,6 +1,7 @@
 package mockdata;
 
 import beans.Car;
+import beans.Country;
 import beans.Person;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.Resources;
@@ -32,5 +33,15 @@ public class MockData {
     List<Car> cars = new Gson().fromJson(json, listType);
     return ImmutableList.copyOf(cars);
   }
+
+  public static ImmutableList<Country> getCountries() throws IOException {
+    InputStream inputStream = Resources.getResource("countries.json").openStream();
+    String json = IOUtils.toString(inputStream);
+    Type listType = new TypeToken<ArrayList<Country>>() {
+    }.getType();
+    List<Country> countries = new Gson().fromJson(json, listType);
+    return ImmutableList.copyOf(countries);
+  }
+
 
 }
