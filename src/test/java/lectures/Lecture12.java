@@ -1,6 +1,7 @@
 package lectures;
 
 import beans.Person;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import mockdata.MockData;
@@ -12,7 +13,10 @@ public class Lecture12 {
     List<String> emails = MockData.getPeople()
         .stream()
         .map(Person::getEmail)
-        .collect(Collectors.toList());
+            .collect(ArrayList::new,
+                ArrayList::add,
+                ArrayList::addAll);
+        //.collect(Collectors.toList());
 
     emails.forEach(System.out::println);
   }
